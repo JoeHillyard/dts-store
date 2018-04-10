@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    image: cezerin/cezerin
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
+      - DB_NAME=shop
+      - DB_USER=
+      - DB_PASS=
+    ports:
+      - 4000:80
+    volumes:
+      - /var/www/cezerin-on-host:/var/www/cezerin
+    restart: always

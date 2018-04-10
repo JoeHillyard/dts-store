@@ -3,9 +3,8 @@ const winston = require('winston');
 const MongoClient = require('mongodb').MongoClient;
 
 const mongodbConnection = settings.mongodbServerUrl;
-const lastslashindex = mongodbConnection.lastIndexOf('/');
-const dbName = mongodbConnection.substring(lastslashindex  + 1);
-
+const dbName = settings.mongodbName;
+console.log(dbName);
 const RECONNECT_INTERVAL = 1000;
 const CONNECT_OPTIONS = {
   reconnectTries: 3600,
@@ -27,6 +26,7 @@ const connectWithRetry = () => {
       setTimeout(connectWithRetry, RECONNECT_INTERVAL);
     } else {
       const db = client.db(dbName);
+      console.log(db);
       db.on('close', onClose);
       db.on('reconnect', onReconnect);
       module.exports.db = db;

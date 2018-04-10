@@ -39,7 +39,7 @@ class SettingsService {
   }
 
   getSettings() {
-    return mongo.db.collection('settings').findOne().then(settings => {
+    return mongo.db .collection('settings').findOne().then(settings => {
       return this.changeProperties(settings);
     });
   }

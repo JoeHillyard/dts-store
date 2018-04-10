@@ -1,12 +1,11 @@
 // config used by server side only
 
-const dbHost = process.env.DB_HOST || '127.0.0.1';
-const dbPort = process.env.DB_PORT || 27017;
-const dbName = process.env.DB_NAME || 'shop'
-const dbUser = process.env.DB_USER || '';
-const dbPass = process.env.DB_PASS || '';
+const dbHost = process.env.DB_HOST || 'dev-dts-shard-00-00-gk5cu.mongodb.net:27017,dev-dts-shard-00-01-gk5cu.mongodb.net:27017,dev-dts-shard-00-02-gk5cu.mongodb.net:27017' || '127.0.0.1';
+const dbName = process.env.DB_NAME || 'test';
+const dbUser = process.env.DB_USER || 'DiligenceTechAdmin';
+const dbPass = process.env.DB_PASS || 'Zfe5cyALTPrOCS9B';
 const dbCred = dbUser.length > 0 || dbPass.length > 0 ? `${dbUser}:${dbPass}@` : '';
-const dbUrl = `mongodb://${dbCred}${dbHost}:${dbPort}/${dbName}`;
+const dbUrl = `mongodb://${dbCred}${dbHost}/${dbName}?ssl=true&replicaSet=dev-dts-shard-0&authSource=admin`;
 
 module.exports = {
   // used by Store (server side)
@@ -26,6 +25,7 @@ module.exports = {
 
   // used by API
   mongodbServerUrl: dbUrl,
+  mongodbName: dbName,
 
   smtpServer: {
     host: '',
